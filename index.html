@@ -22,60 +22,69 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="SIP PKB" />
 
-  <meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbwvoSzxx2mD_yi2gbdqDUeC1-W9GCTpMlayCJSNUQMPcd3xvuhV1tiPPiNrIp_uQhkO_g/exec" />
   <style>
     * { box-sizing: border-box; }
-    body {
+    html, body {
       margin: 0;
-      min-height: 100vh;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    .topbar {
+      height: 48px;
+      background: #155a8a;
+      color: #fff;
       display: flex;
       align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #0f3d63 0%, #155a8a 100%);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      color: #0f3d63;
+      gap: 10px;
+      padding: 0 14px;
+      flex-shrink: 0;
     }
-    .card {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 40px 36px;
-      max-width: 420px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-    }
-    .logo {
-      width: 64px;
-      height: 64px;
+    .topbar img {
+      width: 26px;
+      height: 26px;
       object-fit: contain;
-      margin: 0 auto 16px;
+    }
+    .topbar span {
+      font-size: 14px;
+      font-weight: 600;
+      flex: 1;
+    }
+    .topbar a {
+      color: #dff0ff;
+      font-size: 12px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+    .topbar a:hover { background: rgba(255,255,255,0.15); }
+    .wrap {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    iframe {
+      flex: 1;
+      width: 100%;
+      border: 0;
       display: block;
     }
-    .spinner {
-      width: 44px;
-      height: 44px;
-      border: 4px solid #dfe9f2;
-      border-top-color: #155a8a;
-      border-radius: 50%;
-      margin: 0 auto 20px;
-      animation: spin 0.8s linear infinite;
+    /* Kotak peringatan yang tampil kalau iframe gagal dimuat (diblokir Google) */
+    .fallback {
+      display: none;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+      background: #f4f7fa;
     }
-    @media (max-width: 380px) {
-      .card { padding: 32px 24px; }
-      h1 { font-size: 16px; }
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    h1 {
-      font-size: 18px;
-      margin: 0 0 8px;
-    }
-    p {
-      font-size: 14px;
-      color: #4b5f70;
-      margin: 0 0 20px;
-      line-height: 1.5;
-    }
-    a.btn {
+    .fallback.show { display: flex; }
+    .fallback .box { max-width: 380px; }
+    .fallback h2 { font-size: 16px; color: #0f3d63; margin: 0 0 10px; }
+    .fallback p { font-size: 13px; color: #55677a; line-height: 1.5; margin: 0 0 18px; }
+    .fallback a.btn {
       display: inline-block;
       background: #155a8a;
       color: #fff;
@@ -85,30 +94,60 @@
       font-size: 14px;
       font-weight: 600;
     }
-    a.btn:hover { background: #0f3d63; }
-    .url {
-      margin-top: 16px;
-      font-size: 11px;
-      color: #93a3b0;
-      word-break: break-all;
-    }
   </style>
-  <script>
-    window.location.replace(
-      "https://script.google.com/macros/s/AKfycbwvoSzxx2mD_yi2gbdqDUeC1-W9GCTpMlayCJSNUQMPcd3xvuhV1tiPPiNrIp_uQhkO_g/exec"
-    );
-  </script>
 </head>
 <body>
-  <div class="card">
-    <img class="logo" src="icon-192.png" alt="Logo Provinsi Banten" />
-    <div class="spinner"></div>
-    <h1>Membuka Aplikasi SIP PKB…</h1>
-    <p>Anda sedang diarahkan ke aplikasi SIP PKB (UPTD PPD Malingping). Kalau tidak otomatis terbuka dalam beberapa detik, klik tombol di bawah.</p>
-    <a class="btn" href="https://script.google.com/macros/s/AKfycbwvoSzxx2mD_yi2gbdqDUeC1-W9GCTpMlayCJSNUQMPcd3xvuhV1tiPPiNrIp_uQhkO_g/exec">
-      Buka Aplikasi
-    </a>
-    <div class="url">script.google.com/macros/s/AKfycbwvoSzxx2mD_yi2gbdqDUeC1-W9GCTpMlayCJSNUQMPcd3xvuhV1tiPPiNrIp_uQhkO_g/exec</div>
+  <div class="wrap">
+    <div class="topbar">
+      <img src="icon-192.png" alt="Logo Banten" />
+      <span>SIP PKB — UPTD PPD Malingping</span>
+      <a href="https://script.google.com/macros/s/AKfycbwvoSzxx2mD_yi2gbdqDUeC1-W9GCTpMlayCJSNUQMPcd3xvuhV1tiPPiNrIp_uQhkO_g/exec" target="_blank" rel="noopener">
+        Buka di tab baru ↗
+      </a>
+    </div>
+
+    <iframe
+      id="app-frame"
+      src="https://script.google.com/macros/s/AKfycbwvoSzxx2mD_yi2gbdqDUeC1-W9GCTpMlayCJSNUQMPcd3xvuhV1tiPPiNrIp_uQhkO_g/exec"
+      title="Aplikasi SIP PKB"
+      allow="clipboard-write"
+    ></iframe>
+
+    <div class="fallback" id="fallback-box">
+      <div class="box">
+        <h2>Aplikasi tidak bisa ditampilkan di sini</h2>
+        <p>
+          Google membatasi halamannya supaya tidak bisa ditempel di situs
+          lain (terutama saat proses login akun Google). Silakan buka
+          aplikasinya langsung di tab baru.
+        </p>
+        <a class="btn" href="https://script.google.com/macros/s/AKfycbwvoSzxx2mD_yi2gbdqDUeC1-W9GCTpMlayCJSNUQMPcd3xvuhV1tiPPiNrIp_uQhkO_g/exec" target="_blank" rel="noopener">
+          Buka Aplikasi
+        </a>
+      </div>
+    </div>
   </div>
+
+  <script>
+    // Google sering memblokir embedding lewat X-Frame-Options / CSP tanpa
+    // memicu error JS yang jelas - browser biasanya cuma menampilkan
+    // frame kosong/putih. Sebagai jaga-jaga, kalau setelah beberapa detik
+    // iframe-nya masih tidak bisa diakses (cross-origin, wajar karena
+    // beda domain), tampilkan juga tombol fallback di bawah frame supaya
+    // pengguna tidak bingung melihat layar kosong.
+    var frame = document.getElementById('app-frame');
+    var fallback = document.getElementById('fallback-box');
+    var loaded = false;
+
+    frame.addEventListener('load', function () {
+      loaded = true;
+    });
+
+    setTimeout(function () {
+      if (!loaded) {
+        fallback.classList.add('show');
+      }
+    }, 6000);
+  </script>
 </body>
 </html>

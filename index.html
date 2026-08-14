@@ -13,7 +13,7 @@
 
   <!-- Icon untuk "Add to Home Screen" di HP (iOS & Android) -->
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="manifest" href="manifest.json" />
 
   <!-- Tampilan mobile: warna tema browser + status bar -->
   <meta name="theme-color" content="#155a8a" />
@@ -43,5 +43,20 @@
     title="Aplikasi SIP PKB"
     allow="clipboard-write"
   ></iframe>
+
+  <script>
+    // Daftarkan service worker — syarat wajib agar Chrome membuatkan
+    // WebAPK resmi (ditandatangani Google) saat "Install app"/"Add to
+    // Home screen", bukan sekadar shortcut/bookmark biasa. Dibungkus
+    // pengecekan fitur supaya tidak mengganggu browser lama yang belum
+    // mendukung service worker.
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js').catch(function (err) {
+          console.warn('Pendaftaran service worker gagal:', err);
+        });
+      });
+    }
+  </script>
 </body>
 </html>

@@ -27,127 +27,21 @@
     html, body {
       margin: 0;
       height: 100%;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    }
-    .topbar {
-      height: 48px;
-      background: #155a8a;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 0 14px;
-      flex-shrink: 0;
-    }
-    .topbar img {
-      width: 26px;
-      height: 26px;
-      object-fit: contain;
-    }
-    .topbar span {
-      font-size: 14px;
-      font-weight: 600;
-      flex: 1;
-    }
-    .topbar a {
-      color: #dff0ff;
-      font-size: 12px;
-      text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.5);
-      padding: 4px 10px;
-      border-radius: 6px;
-      white-space: nowrap;
-    }
-    .topbar a:hover { background: rgba(255,255,255,0.15); }
-    .wrap {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
+      overflow: hidden;
     }
     iframe {
-      flex: 1;
       width: 100%;
+      height: 100%;
       border: 0;
       display: block;
-    }
-    /* Kotak peringatan yang tampil kalau iframe gagal dimuat (diblokir Google) */
-    .fallback {
-      display: none;
-      flex: 1;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
-      text-align: center;
-      background: #f4f7fa;
-    }
-    .fallback.show { display: flex; }
-    .fallback .box { max-width: 380px; }
-    .fallback h2 { font-size: 16px; color: #0f3d63; margin: 0 0 10px; }
-    .fallback p { font-size: 13px; color: #55677a; line-height: 1.5; margin: 0 0 18px; }
-    .fallback a.btn {
-      display: inline-block;
-      background: #155a8a;
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 22px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="topbar">
-      <img src="icon-192.png" alt="Logo Banten" />
-      <span>SIP PKB — UPTD PPD Malingping</span>
-      <a href="https://script.google.com/macros/s/AKfycbwvoSzxx2mD_yi2gbdqDUeC1-W9GCTpMlayCJSNUQMPcd3xvuhV1tiPPiNrIp_uQhkO_g/exec" target="_blank" rel="noopener">
-        Buka di tab baru ↗
-      </a>
-    </div>
-
-    <iframe
-      id="app-frame"
-      src="https://script.google.com/macros/s/AKfycbwvoSzxx2mD_yi2gbdqDUeC1-W9GCTpMlayCJSNUQMPcd3xvuhV1tiPPiNrIp_uQhkO_g/exec"
-      title="Aplikasi SIP PKB"
-      allow="clipboard-write"
-    ></iframe>
-
-    <div class="fallback" id="fallback-box">
-      <div class="box">
-        <h2>Aplikasi tidak bisa ditampilkan di sini</h2>
-        <p>
-          Google membatasi halamannya supaya tidak bisa ditempel di situs
-          lain (terutama saat proses login akun Google). Silakan buka
-          aplikasinya langsung di tab baru.
-        </p>
-        <a class="btn" href="https://script.google.com/macros/s/AKfycbwvoSzxx2mD_yi2gbdqDUeC1-W9GCTpMlayCJSNUQMPcd3xvuhV1tiPPiNrIp_uQhkO_g/exec" target="_blank" rel="noopener">
-          Buka Aplikasi
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Google sering memblokir embedding lewat X-Frame-Options / CSP tanpa
-    // memicu error JS yang jelas - browser biasanya cuma menampilkan
-    // frame kosong/putih. Sebagai jaga-jaga, kalau setelah beberapa detik
-    // iframe-nya masih tidak bisa diakses (cross-origin, wajar karena
-    // beda domain), tampilkan juga tombol fallback di bawah frame supaya
-    // pengguna tidak bingung melihat layar kosong.
-    var frame = document.getElementById('app-frame');
-    var fallback = document.getElementById('fallback-box');
-    var loaded = false;
-
-    frame.addEventListener('load', function () {
-      loaded = true;
-    });
-
-    setTimeout(function () {
-      if (!loaded) {
-        fallback.classList.add('show');
-      }
-    }, 6000);
-  </script>
+  <iframe
+    src="https://script.google.com/macros/s/AKfycbwvoSzxx2mD_yi2gbdqDUeC1-W9GCTpMlayCJSNUQMPcd3xvuhV1tiPPiNrIp_uQhkO_g/exec"
+    title="Aplikasi SIP PKB"
+    allow="clipboard-write"
+  ></iframe>
 </body>
 </html>

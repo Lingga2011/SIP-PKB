@@ -1,4 +1,4 @@
-// Service worker minimal untuk SIP PKB (GitHub Pages).
+// Service worker minimal untuk SIP-PKB (GitHub Pages).
 // Tujuannya HANYA supaya Chrome menganggap halaman ini "installable"
 // (syarat PWA sah) dan membuatkan WebAPK resmi saat "Install app"/
 // "Add to Home screen" — BUKAN untuk offline penuh. Isi aplikasi

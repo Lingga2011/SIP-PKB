@@ -6,7 +6,7 @@
 // script.google.com (beda origin, di dalam iframe) dan tetap butuh
 // koneksi internet aktif seperti biasa.
 
-const CACHE_NAME = 'sip-pkb-shell-v1';
+const CACHE_NAME = 'sip-pkb-shell-v2';
 const APP_SHELL = [
   './',
   './index.html',

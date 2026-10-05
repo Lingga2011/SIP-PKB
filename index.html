@@ -16,7 +16,35 @@
   <link rel="manifest" href="manifest.json" />
 
   <!-- Tampilan mobile: warna tema browser + status bar -->
-  <meta name="theme-color" content="#2F5F9E" />
+  <meta name="theme-color" content="#11A2EF" />
+  <script>
+    // Warna title bar (desktop) / status bar (HP) mengikuti navbar gradasi
+    // aplikasi. Warna akurat dikirim dari dalam aplikasi (iframe) lewat
+    // postMessage sesuai mode terang/gelap & lebar layar; nilai terakhir
+    // disimpan supaya langsung dipakai saat aplikasi dibuka berikutnya.
+    // Pesan hanya diterima dari script.google.com / *.googleusercontent.com
+    // dan hanya kode warna heksadesimal yang valid.
+    (function () {
+      var KEY = 'sippkb_theme_color';
+      var RE_WARNA = /^#[0-9a-fA-F]{6}$/;
+      var RE_ORIGIN = /^https:\/\/([a-z0-9-]+\.)*(googleusercontent\.com|script\.google\.com)$/;
+      function pasang(warna) {
+        var m = document.querySelector('meta[name="theme-color"]');
+        if (m && m.getAttribute('content') !== warna) m.setAttribute('content', warna);
+      }
+      try {
+        var tersimpan = localStorage.getItem(KEY);
+        if (tersimpan && RE_WARNA.test(tersimpan)) pasang(tersimpan);
+      } catch (e) { /* abaikan */ }
+      window.addEventListener('message', function (ev) {
+        if (!RE_ORIGIN.test(ev.origin)) return;
+        var d = ev.data;
+        if (!d || d.type !== 'sippkb:theme-color' || !RE_WARNA.test(String(d.color))) return;
+        pasang(d.color);
+        try { localStorage.setItem(KEY, d.color); } catch (e) { /* abaikan */ }
+      });
+    })();
+  </script>
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
